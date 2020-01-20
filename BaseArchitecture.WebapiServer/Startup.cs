@@ -1,3 +1,6 @@
+using Autofac;
+using BaseArchitecture.IServices;
+using BaseArchitecture.Services;
 using ConsulExtensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -56,6 +59,11 @@ namespace BaseArchitecture.WebapiServer
             });
             #endregion
 
+        }
+
+        public void ConfigureContainer(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.RegisterType<JWTService>().As<IJWTService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
